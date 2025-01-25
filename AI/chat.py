@@ -5,9 +5,8 @@ import google.generativeai as genai
 from flask_cors import CORS
 load_dotenv()
 
-# apikey = "AIzaSyDV6TnK_RdbzCqqIbtIB-obxXLON0gMTs4"
-# apikey = ""
-genai.configure(api_key="AIzaSyBzHgFFZ4sqAU378KTGZASsA9f3l22JL7E")
+apikey = os.getenv("GEMINI_KEY")
+genai.configure(api_key=apikey)
 generation_config = {
     "temperature": 0.5,
     "top_p": 0.95,

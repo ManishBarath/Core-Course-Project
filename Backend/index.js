@@ -14,9 +14,10 @@ const port = 3000;
 
 // Endpoint to handle file uploads
 const router1 = require('./controller/curd')
+const router2 = require('./controller/search')
 
 app.use('/curd',router1)
-
+app.use('/search',router2)
 
 
 app.listen(port, () => {

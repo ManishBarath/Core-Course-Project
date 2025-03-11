@@ -1,7 +1,6 @@
 // ADMIN OR RESEARCHER CAN ACCESS THIS FILE
 
 const express = require("express");
-const { supabase } = require("../database");
 const router = express.Router();
 
 const multer = require("multer");
@@ -41,7 +40,6 @@ router.post("/upload", upload.single("file"), async (req, res) => {
                 longitude: row.Longitude,
                 depth: row.Depth
             };
-
             occurrenceData.push(formattedRow);
 
             // Only add to abundance if "Catch Weight" exists
@@ -59,7 +57,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
         // Insert into OccurrenceData table
         if (occurrenceData.length > 0) {
            
-            const { error: occurrenceError } = await supabase.from("OccurrenceData").insert(occurrenceData);
+            const { error: occurrenceError } = await supabase.from("occurrencedata").insert(occurrenceData);
             
             if (occurrenceError) {
                 
@@ -69,7 +67,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
 
         // Insert into AbundanceData table
         if (abundanceData.length > 0) {
-            const { error: abundanceError } = await supabase.from("AbundanceData").insert(abundanceData);
+            const { error: abundanceError } = await supabase.from("abundancedata").insert(abundanceData);
             if (abundanceError) {
                 return res.status(500).json({ error: abundanceError.message });
             }

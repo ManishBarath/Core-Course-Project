@@ -1,6 +1,4 @@
 const dotenv = require("dotenv").config()
-const express = require("express")
-const app = express();
 const { supabase } = require("./database");
 console.log("HELLO????????????????????????????????????????????????????")
 
@@ -19,6 +17,22 @@ const router1 = require('./controller/curd')
 
 app.use('/curd',router1)
 
+async function createUser() {
+    const { data, error } = await supabase.from("users").insert([
+        {
+          username: "john_doe",
+          email: "johndoe@example.com",
+          password_hash: "hashedpassword123"
+        }
+      ]);
+    if (error) {
+        console.error("Error inserting user:", JSON.stringify(error, null, 2));
+    } else {
+        console.log("User created successfully:", data);
+    }
+}
+
+// createUser();
 
 
 app.listen(port, () => {
@@ -27,7 +41,5 @@ app.listen(port, () => {
 
 
  console.log(supabase)
-
- app.listen(3000);
 
  

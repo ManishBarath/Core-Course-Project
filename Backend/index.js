@@ -1,8 +1,9 @@
+const express = require("express");
+
 const dotenv = require("dotenv").config()
 const { supabase } = require("./database");
-console.log("HELLO????????????????????????????????????????????????????")
 
-const express = require("express");
+
 
 const cors = require('cors')
 
@@ -11,28 +12,12 @@ const port = 3000;
 
 // Set up Multer for file uploads
 
-
+app.use(express.json())
 // Endpoint to handle file uploads
 const router1 = require('./controller/curd')
-
+const router2 = require('./controller/search')
 app.use('/curd',router1)
-
-async function createUser() {
-    const { data, error } = await supabase.from("users").insert([
-        {
-          username: "john_doe",
-          email: "johndoe@example.com",
-          password_hash: "hashedpassword123"
-        }
-      ]);
-    if (error) {
-        console.error("Error inserting user:", JSON.stringify(error, null, 2));
-    } else {
-        console.log("User created successfully:", data);
-    }
-}
-
-// createUser();
+app.use('/api',router2)
 
 
 app.listen(port, () => {

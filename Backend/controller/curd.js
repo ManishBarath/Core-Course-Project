@@ -94,7 +94,8 @@ router.post("/upload", upload.single("file"), async (req, res) => {
 
         res.json({
             message: "Data uploaded successfully",
-            recordsInserted: occurrenceData.length + abundanceData.length
+            recordsInserted: occurrenceData.length + abundanceData.length,
+            temp:data
         });
     } catch (error) {
         console.error("Internal Server Error:", error);

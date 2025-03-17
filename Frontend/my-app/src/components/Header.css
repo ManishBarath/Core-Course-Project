@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #283e4a;
+    color: #fff;
+    padding: 10px 20px;
+  }
+  
+  .header-logo h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .header-nav a,
+  .header-nav button {
+    margin-left: 15px;
+    color: #fff;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .header-nav button:hover,
+  .header-nav a:hover {
+    text-decoration: underline;
+  }
+  

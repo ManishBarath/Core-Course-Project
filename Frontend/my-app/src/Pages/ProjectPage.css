@@ -1,0 +1,19 @@
+.project-page {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .project-page h2 {
+    margin-bottom: 15px;
+  }
+  
+  .project-page ul {
+    text-align: left;
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  

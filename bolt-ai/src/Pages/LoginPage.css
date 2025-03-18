@@ -1,0 +1,95 @@
+.login-page {
+  max-width: 400px;
+  margin: 40px auto;
+  background: var(--surface);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px var(--shadow);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.login-page h2 {
+  margin-bottom: 30px;
+  color: var(--text);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  text-align: center;
+  background: linear-gradient(120deg, var(--primary), var(--primary-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-form .form-group {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 16px;
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(26, 152, 255, 0.15);
+  outline: none;
+}
+
+.login-form input::placeholder {
+  color: var(--text-secondary);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(to right, var(--primary), var(--primary-dark));
+  border: none;
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translate(-50%, -50%) rotate(25deg);
+  transition: transform 0.5s ease;
+}
+
+.login-btn:hover::after {
+  transform: translate(-50%, -50%) rotate(45deg) scale(1.5);
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 152, 255, 0.3);
+}
+
+.login-btn:active {
+  transform: translateY(1px);
+}

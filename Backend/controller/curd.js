@@ -4,6 +4,9 @@ const router = express.Router();
 const multer = require("multer");
 const xlsx = require("xlsx");
 
+// Import the Supabase client from your database module
+const { supabase } = require("../database");
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
@@ -20,7 +23,10 @@ router.post("/upload", upload.single("file"), async (req, res) => {
         // Parse Excel file
         const workbook = xlsx.read(req.file.buffer, { type: "buffer" });
         const sheetName = workbook.SheetNames[0];
-        const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
+        const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName], {
+            raw: false, // Ensures that date columns are converted to readable date strings
+        });
+        
 
         let occurrenceData = [];
         let abundanceData = [];
@@ -36,6 +42,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
                 .select("species_id")
                 .eq("species_name", speciesName)
                 .single();
+
 
             if (speciesError || !speciesData) {
                 // If species not found, insert it
@@ -93,11 +100,13 @@ router.post("/upload", upload.single("file"), async (req, res) => {
 
         res.json({
             message: "Data uploaded successfully",
-            recordsInserted: occurrenceData.length + abundanceData.length
+            recordsInserted: occurrenceData.length + abundanceData.length,
+            temp: data
         });
     } catch (error) {
         console.error("Internal Server Error:", error);
         res.status(500).json({ error: "Internal server error", details: error.message });
     }
 });
+
 module.exports = router;
